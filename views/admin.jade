@@ -1,0 +1,9 @@
+extends layout
+
+block content
+ div.padeo
+  h1 Zona Admin
+  p Bienvenido Administrador
+  a(href='/admin/nuevapropiedad').btn.btn-primary Nueva Propiedad
+ if error
+  p #{error.status}

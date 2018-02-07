@@ -1,0 +1,55 @@
+extends layout
+
+block content
+ if error
+  p #{error.status}
+ div.padeo
+  form.form-horizontal(method="post",action="/admin/new/propiedad",enctype='multipart/form-data')
+   .form-group
+    label.control-label.col-sm-2(for="direccion") Dirección
+    .col-sm-5
+     input.form-control(type="text" id="direccion" placeholder="Direccion" name="direccion" required)
+   .form-group
+    label.control-label.col-sm-2(for="categoria") Categoria
+    .col-sm-5
+     select.selectpicker(name="categoria" id="categoria")
+      option(title="arrendamiento" selected) Arrendamiento
+      option(title="campo") Campo
+      option(title="alquiler") Alquiler
+      option(title="propiedad") Propiedad
+      option(title="lote") Lote
+   .form-group
+    label.control-label.col-sm-2(for="subcategoria") Sub-Categoria
+    .col-sm-5
+     select.selectpicker(name="subcategoria" id="subcategoria")
+      option(title="vacio") Vacio
+   .form-group
+    label.control-label.col-sm-2(for="Precio") Precio
+    .col-sm-5
+     input.form-control(type="text" id="precio" name="precio" required)
+   .form-group
+    label.control-label.col-sm-2(for="Descripcion") Descripción
+    .col-sm-8
+     textarea.form-control(rows="6" name="descripcion" id="descripcion")
+   .form-group
+    label.control-label.col-sm-2 Slot para Imagen:
+    .col-sm-5
+     input.form-control(name='images', type='file')
+   .form-group
+    label.control-label.col-sm-2 Slot para Imagen:
+    .col-sm-5
+     input.form-control(name='images', type='file')
+   .form-group
+    label.control-label.col-sm-2 Slot para Imagen:
+    .col-sm-5
+     input.form-control(name='images', type='file')
+   .form-group
+    label.control-label.col-sm-2 Slot para Imagen:
+    .col-sm-5
+     input.form-control(name='images', type='file')
+   .form-group
+    label.control-label.col-sm-2 Slot para Imagen:
+    .col-sm-5
+     input.form-control(name='images', type='file')
+   button.btn.btn-success(type="submit") Crear Item
+ 

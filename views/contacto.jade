@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  h1.titulo Nuestro Local 
+   span.glyphicon.glyphicon-road(aria-hidden="true")
+  div.row.rowstyle
+   div.col-lg-4
+    ul.lista.lista-contacto
+     li
+      span.glyphicon.glyphicon-home   Ciudad: Tandil
+     li
+      span.glyphicon.glyphicon-flag   Direccion: Av.Falucho 897
+     li
+      span.glyphicon.glyphicon-tree-deciduous   Telefono: (0249)4436672
+     li
+      span.glyphicon.glyphicon-phone   Cel: (0249)154-633127
+     li
+      address
+       span.glyphicon.glyphicon-envelope    E-mail: 
+        a(href="mailto:hermangatti@hotmail.com") hermangatti@hotmail.com
+   div.col-lg-8.mapa
+    iframe(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1887.5387730175205!2d-59.11036893336255!3d-37.32378430931192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95911fe0c4d5efa1%3A0x850852c2ec0147c2!2sHerman+Gatti+Negocios+Inmobiliarios!5e0!3m2!1ses!2sar!4v1480363523439" width="600" height="450" frameborder="0" style="border:0" allowfullscreen)
+

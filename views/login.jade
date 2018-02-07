@@ -1,0 +1,16 @@
+extends layout
+
+block content
+ div.padeo
+  h2.page-header Iniciar Sesion
+  if errors
+   each error, i in errors
+    div.alert.alert-danger #{error.msg}
+  form(method='post', action='/users/login')
+   .form-group 
+    label Nombre de Usuario
+    input.form-control(name='username', type='text', placeholder='Nombre de Usuario')
+   .form-group
+    label Contraseña
+    input.form-control(name='password', type='password', placeholder='Contraseña')
+   input.btn.btn-primary(type='submit', name='submit',value='Login')

@@ -1,0 +1,39 @@
+extends layout
+
+block content
+ div.row.margin-0
+  div(id="owl-demo" class="owl-carousel")
+      div(class="item")
+       img(src="/images/img1.jpg" alt="Owl Image")
+      div(class="item")
+       img(src="/images/img2.jpg" alt="Owl Image")
+      div(class="item")
+       img(src="/images/img3.jpg" alt="Owl Image")
+      div(class="item")
+       img(src="/images/img4.jpg" alt="Owl Image")
+      div(class="item")
+       img(src="/images/img5.jpg" alt="Owl Image")
+ hr
+ div.row
+  div.col-lg-12.padeo
+   .row
+    h1.titulo ¡Bienvenido!
+     span.glyphicon.glyphicon-home(aria-hidden="true")
+    p Bienvenido/a a nuestro Sitio Web. En el podrá conocer con detalle y fotos nuestra oferta de inmuebles tanto a la Venta como en Alquiler. También tendrá la opción de comunicarse a nuestros teléfonos, fijo o celular, o hacernos llegar via mail para mas detalles de lo que necesite.
+
+   .row
+    h3.subtitulo.underline Algunas de nuestras propiedades
+     span.glyphicon.glyphicon-folder-open(aria-hidden="true")
+    if propiedades      
+     each propiedad in propiedades
+      a(href='/propiedades/mostrar/#{propiedad._id}')
+       div(class="boxinfo")
+        .propiedad
+         if propiedad.imagenes.length != 0
+          img.img-responsive.img-rounded(src="/imgpropiedades/#{propiedad.imagenes[0]}")
+         else
+          img.img-responsive.img-rounded(src="/images/no-image.png")
+         p Categoria: #{propiedad.categoria}
+         p Direccion: #{propiedad.direccion}
+         p Precio: #{propiedad.precio}
+

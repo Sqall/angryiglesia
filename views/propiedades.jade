@@ -1,0 +1,173 @@
+extends layout
+
+block content
+ div.row
+  if !lote
+   if !arrendamiento
+    div.col-lg-3
+     ul.buscador.margin-top-10
+      if propiedad
+       li
+        a(href="/propiedades/buscar/propiedad/departamento") Departamento
+       li
+        a(href="/propiedades/buscar/propiedad/duplex") Duplex
+       li
+        a(href="/propiedades/buscar/propiedad/casa") Casa
+       li
+        a(href="/propiedades/buscar/propiedad/chalet") Chalet
+       li
+        a(href="/propiedades/buscar/propiedad/local") Local
+       li
+        a(href="/propiedades/buscar/propiedad/galpon") Galpon
+       li
+        a(href="/propiedades/buscar/propiedad/oficina") Oficina
+      if alquiler
+       li
+        a(href="/propiedades/buscar/alquiler/departamento") Departamento
+       li
+        a(href="/propiedades/buscar/alquiler/duplex") Duplex
+       li
+        a(href="/propiedades/buscar/alquiler/casa") Casa
+       li
+        a(href="/propiedades/buscar/alquiler/chalet") Chalet
+       li
+        a(href="/propiedades/buscar/alquiler/local") Local
+       li
+        a(href="/propiedades/buscar/alquiler/galpon") Galpon
+       li
+        a(href="/propiedades/buscar/alquiler/oficina") Oficina
+      if campo
+       li
+        a(href="/propiedades/buscar/campo/quinta") Quintas
+       li
+        a(href="/propiedades/buscar/campo/estancia") Estancias
+       li
+        a(href="/propiedades/buscar/campo/chacra") Chacras
+       li
+        a(href="/propiedades/buscar/campo/agricolas") Agrícolas
+       li
+        a(href="/propiedades/buscar/campo/mixto") Mixto
+       li
+        a(href="/propiedades/buscar/campo/cria") De Cria
+      if cate == "campo"
+       li
+        a(href="/propiedades/buscar/campo/quinta") Quintas
+        if sub == "quinta"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/campo/estancia") Estancias
+        if sub == "estancia"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/campo/chacra") Chacras
+        if sub == "chacra"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/campo/agricolas") Agrícolas
+        if sub == "agricolas"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/campo/mixto") Mixto
+        if sub == "mixto"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/campo/cria") De Cria
+        if sub == "cria"
+         span.glyphicon.glyphicon-arrow-right
+      if cate == "propiedad"
+       li
+        a(href="/propiedades/buscar/propiedad/departamento") Departamento
+        if sub == "departamento"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/propiedad/duplex") Duplex
+        if sub == "duplex"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/propiedad/casa") Casa
+        if sub == "casa"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/propiedad/chalet") Chalet
+        if sub == "chalet"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/propiedad/local") Local
+        if sub == "local"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/propiedad/galpon") Galpon
+        if sub == "galpon"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/propiedad/oficina") Oficina
+        if sub == "oficina"
+         span.glyphicon.glyphicon-arrow-right
+      if cate == "alquiler"
+       li
+        a(href="/propiedades/buscar/alquiler/departamento") Departamento
+        if sub == "departamento"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/alquiler/duplex") Duplex
+        if sub == "duplex"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/alquiler/casa") Casa
+        if sub == "casa"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/alquiler/chalet") Chalet
+        if sub == "chalet"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/alquiler/local") Local
+        if sub == "local"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/alquiler/galpon") Galpon
+        if sub == "galpon"
+         span.glyphicon.glyphicon-arrow-right
+       li
+        a(href="/propiedades/buscar/alquiler/oficina") Oficina
+        if sub == "oficina"
+         span.glyphicon.glyphicon-arrow-right
+  if !lote
+   if !arrendamiento
+    div.col-lg-9
+     if (propiedades)
+      each propiedad, i in propiedades
+       a(href='/propiedades/mostrar/#{propiedad._id}')
+        div(class="boxinfo")
+         .propiedad
+          if propiedad.imagenes.length !=0
+           img.img-responsive(src="/imgpropiedades/#{propiedad.imagenes[0]}")
+          else
+           img.img-responsive(src="/images/no-image.png")
+          p.subtitulo <strong>Direccion:</strong> #{propiedad.direccion}
+          p.subtitulo <strong>Tipo:</strong> #{propiedad.subcategoria}
+          p.subtitulo <strong>Precio:</strong> #{propiedad.precio} U$S
+      if (propiedades.length == 0)
+       p Lo sentimos, no hay propiedades de la categoria elegida.
+     else
+      p Lo sentimos, no hay propiedades de la categoria elegida.
+  else
+   div.col-lg-12
+     if (propiedades)
+      each propiedad, i in propiedades
+       a(href='/propiedades/mostrar/#{propiedad._id}')
+        div(class="boxinfo")
+         .propiedad
+          if propiedad.imagenes.length !=0
+           img.img-responsive(src="/imgpropiedades/#{propiedad.imagenes[0]}")
+          else
+           img.img-responsive(src="/images/no-image.png")
+          p.subtitulo <strong>Direccion:</strong> #{propiedad.direccion}
+          p.subtitulo <strong>Tipo:</strong> #{propiedad.subcategoria}
+          p.subtitulo <strong>Precio:</strong> #{propiedad.precio} U$S
+      if (propiedades.length === 0)
+       p Lo sentimos, no hay propiedades de la categoria elegida.
+     else
+      p Lo sentimos, no hay propiedades de la categoria elegida.
+ if arrendamiento
+  p.mensaje.texto-centrado Actualmente disponemos con varios Campos en Arrendamientos cercanos a Tandil, su consulta no molesta.

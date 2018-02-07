@@ -1,0 +1,141 @@
+extends layout
+
+block content
+ if error
+  p "Hubo un error, pruebe nuevamente en unos minutos"
+ div.padeo
+  if item
+   .row
+    form( method="post", action='/admin/edit/propiedad', enctype='multipart/form-data')
+     .form-group
+      label(for="direccion") Dirección
+      input.form-control(type="text" id="direccion" placeholder="Direccion" name="direccion" value='#{item.direccion}')
+     .form-group
+      label(for="categoria") Categoria
+      select.selectpicker(name="categoria" id="categoria")
+       if (item.categoria == 'Arrendamiento')
+        option(title="Arrendamiento" selected) Arrendamiento
+       else
+        option(title="Arrendamiento") Arrendamiento
+       if (item.categoria == 'Campo')
+        option(title="Campo" selected) Campo
+       else
+        option(title="Campo") Campo
+       if (item.categoria == 'Alquileres')
+        option(title="Alquiler" selected) Alquiler
+       else
+        option(title="Alquiler") Alquiler
+       if (item.categoria == 'Propiedad')
+        option(title="Propiedad" selected) Propiedad
+       else
+        option(title="Propiedad") Propiedad
+       if (item.categoria == 'Lote')
+        option(title="Lote" selected) Lote
+       else
+        option(title="Lote") Lote
+     .form-group
+      label(for="subcategoria") Sub-Categoria
+      if (item.categoria == 'Arrendamiento')
+       select.selectpicker(name="subcategoria" id="subcategoria")
+        option(title="------" selected) Vacio
+      if (item.categoria == 'Lote')
+       select.selectpicker(name="subcategoria" id="subcategoria")
+        option(title="------" selected) Vacio
+      if (item.categoria == 'Campo')
+        select.selectpicker(name="subcategoria" id="subcategoria")
+         if item.subcategoria == 'Quinta'
+          option(title="Quinta" selected) Quinta
+         else
+          option(title="") Quinta
+         if item.subcategoria == 'Estancia'
+          option(title="Estancia" selected) Estancia
+         else
+          option(title="Estancia") Estancia
+         if item.subcategoria == 'Chacra'
+          option(title="Chacra" selected) Chacra
+         else
+          option(title="Chacra") Chacra
+      if (item.categoria == 'Alquiler')
+        select.selectpicker(name="subcategoria" id="subcategoria")
+         if item.subcategoria == 'Departamento'
+          option(title="Departamento" selected) Departamento
+         else
+          option(title="") Departamento
+         if item.subcategoria == 'Duplex'
+          option(title="Duplex" selected) Duplex
+         else
+          option(title="Duplex") Duplex
+         if item.subcategoria == 'Casa'
+          option(title="Casa" selected) Casa
+         else
+          option(title="Casa") Casa
+         if item.subcategoria == 'Chalet'
+           option(title="Chalet" selected) Chalet
+         else
+          option(title="Chalet") Chalet
+         if item.subcategoria == 'Oficina'
+          option(title="Oficina" selected) Oficina
+         else
+          option(title="Oficina") Oficina
+         if item.subcategoria == 'Local'
+          option(title="Local" selected) Local
+         else
+          option(title="Local") Local
+         if item.subcategoria == 'Galpon'
+          option(title="galpon" selected) Galpon
+         else
+          option(title="galpon") Galpon
+      if (item.categoria == 'Propiedad')
+       select.selectpicker(name="subcategoria" id="subcategoria")
+         if item.subcategoria == 'Departamento'
+          option(title="departamento" selected) Departamento
+         else
+          option(title="departamento") Departamento
+         if item.subcategoria == 'Duplex'
+          option(title="duplex" selected) Duplex
+         else
+          option(title="duplex") Duplex
+         if item.subcategoria == 'Casa'
+          option(title="casa" selected) Casa
+         else
+          option(title="casa") Casa
+         if item.subcategoria == 'Chalet'
+           option(title="chalet" selected) Chalet
+         else
+          option(title="chalet") Chalet
+         if item.subcategoria == 'Oficina'
+          option(title="oficina" selected) Oficina
+         else
+          option(title="oficina") Oficina
+         if item.subcategoria == 'Local'
+          option(title="local" selected) Local
+         else
+          option(title="local") Local
+         if item.subcategoria == 'galpon'
+          option(title="galpon" selected) Galpon
+         else
+          option(title="galpon") Galpon
+     .form-group
+      label(for="Precio") Precio
+      input.form-control(type="text" id="precio" name="precio" value="#{item.precio}")
+     .form-group
+      label(for="Descripcion") Descripcion
+      textarea.form-control(rows="4" name="descripcion" id="descripcion" resize="none") #{item.descripcion}    
+     .form_group
+      input(name='_id' value="#{item._id}"  type="hidden")
+     button.btn.btn-success(type="submit") Editar
+   .row.imgshow
+    each img, i in item.imagenes
+     form(method="POST" action="/admin/borrar/imagen/#{item._id}/#{item.imagenes[i]}" onsubmit="return confirm('¿Seguro que quieres borrar esta imagen?')")
+      img(src="/imgpropiedades/#{item.imagenes[i]}").imgeditbox.img-responsive
+      button(type="submit").btn.btn-danger Borrar
+   .row.margin-top-50
+    if item.imagenes.length <= 4
+     p 
+      label.subtitulo Subir Foto
+     form.form-horizontal(method="post",action="/admin/new/imagen/#{item._id}",enctype='multipart/form-data')    
+      .form-group
+       label.control-label.col-sm-2 Slot para Imagen:
+       .col-sm-5
+        input.form-control(name='images', type='file')
+      button(type="submit").btn.btn-success Agregar Imagen

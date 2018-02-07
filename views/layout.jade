@@ -1,0 +1,66 @@
+doctype html
+html(lang='en')
+  head
+    title Inmobiliaria
+    link(href='/stylesheets/bootstrap.css', rel='stylesheet')
+    link(href='/stylesheets/style.css', rel='stylesheet')
+    link(href='/stylesheets/owl.carousel.css', rel='stylesheet')
+    link(href='/stylesheets/owl.transitions.css', rel='stylesheet')
+    link(href='/stylesheets/owl.theme.css', rel='stylesheet')
+  body   
+   div.container
+    if user
+     a(href="/users/logout").logout
+      button.btn.btn-info(type="button") Cerrar Sessión
+    div.row.banner
+     div.col-lg-5
+      if user
+       a(href="/admin")
+        img(id="logocompania" src="/images/logo2.png").img-responsive.img-rounded
+      else
+       a(href="/")
+        img(id="logocompania" src="/images/logo2.png").img-responsive.img-rounded
+    .row
+     .col-lg-6
+      p.telefono Tel: 0249 4436672 - Cel: 0249 154633127
+     .col-lg-6
+      p.about
+       a(href="/about") ¿Quiénes Somos?
+    hr
+    .row
+     .navegador
+      ul.lista
+        li
+         a(href='/propiedades/Propiedad') Propiedades
+          if propiedad
+           span.glyphicon.glyphicon-pushpin
+          if cate == 'propiedad'
+           span.glyphicon.glyphicon-pushpin
+        li
+         a(href='/propiedades/Alquiler') Alquileres
+          if alquiler
+           span.glyphicon.glyphicon-pushpin
+          if cate == 'alquiler'
+           span.glyphicon.glyphicon-pushpin
+        li
+         a(href='/propiedades/Campo') Campos
+          if campo
+           span.glyphicon.glyphicon-pushpin
+          if cate == 'campo'
+           span.glyphicon.glyphicon-pushpin         
+        li
+         a(href='/propiedades/Lote') Lotes
+          if lote
+           span.glyphicon.glyphicon-pushpin
+        li
+         a(href='/propiedades/Arrendamiento') Arrendamientos
+          if arrendamiento
+           span.glyphicon.glyphicon-pushpin
+    div.row
+    != messages()
+    hr
+    block content
+  script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+  script(src='/javascripts/bootstrap.js')
+  script(src='/javascripts/owl.carousel.min.js')
+  script(src='/javascripts/scripts.js')

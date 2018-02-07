@@ -1,0 +1,63 @@
+extends layout
+
+block content
+ div.row
+  div.col-lg-12  
+   if item
+    .item
+     div.row
+      div.col-lg-12.owlpadding
+       if item.imagenes.length != 0
+        div(id="carousel-example-generic" class="carousel slide" data-ride="carousel")
+         ol.carousel-indicators
+          each tag, i in item.imagenes
+           if (i == 0)
+            li(data-target="#carousel-example-generic" data-slide-to=i class="active")
+           if (i != 0)
+            li(data-target="#carousel-example-generic" data-slide-to=i)
+         div.carousel-inner(role="listbox")
+          each imagen,i in item.imagenes
+           if (i == 0)
+            div(class="item active")
+             img.rounded.img-responsive(src="/imgpropiedades/#{imagen}")
+             <!--div.carousel-caption Caption of img -->
+           else
+            div(class="item")
+             img.rounded.img-responsive(src="/imgpropiedades/#{imagen}")
+             <!--div.carousel-caption Caption of img -->
+         <!-- Controls -->
+         a.left.carousel-control(href="#carousel-example-generic" role="button" data-slide="prev")
+           .span.glyphicon.glyphicon-chevron-left(aria-hidden="true")
+           .span.sr-only Previous
+         a.right.carousel-control(href="#carousel-example-generic" role="button" data-slide="next")
+           span.glyphicon.glyphicon-chevron-right(aria-hidden="true")
+           span.sr-only Next
+       else
+        img.rounded.img-responsive(src="/images/no-image.png")
+     div.row
+      div.col-lg-12.propinfo
+       p <strong>Descripcion:</strong> #{item.descripcion}
+       p <strong>Categoria:</strong> #{item.subcategoria}
+       p <strong>Direccion:</strong> #{item.direccion}
+       p <strong>Precio:</strong> #{item.precio} $
+       if user
+        .useroption
+         div.btn-group.btn-group-justified(role="group" aria-label="...")
+           div.btn-group(role="group")
+             a(href="/admin/edit/propiedad/#{item._id}")
+              button.btn.btn-info(type="button") Editar Propiedad
+           div.btn-group(role="group")
+             button.btn.btn-danger(type="button" data-toggle="modal" data-target="#myModal") Borrar Propiedad
+   else
+    p Hubo un error inesperado, inente nuevamente en unos minutos
+  div.modal.fade(tabindex="-1" role="dialog" id="myModal")
+    div.modal-dialog(role="document")
+      div.modal-content
+        div.modal-header
+         button.close(type="button" data-dismiss="modal" aria-label="Close")
+          span(aria-hidden="true") &times;
+         h4.modal-title ¿Estas seguro que quieres borrar este elemento?
+        div.modal-footer
+         form(action="/admin/borrar/propiedad/#{item._id}" method="post")
+          button.btn.btn-primary(type="submit") Borrar
+         button.btn.btn-default(type="button" data-dismiss="modal") Cancel

@@ -1,0 +1,45 @@
+extends layout
+
+block content
+ div.padeo
+  .row
+   h1.titulo Sobre Nosotros
+    span.glyphicon.glyphicon-home(aria-hidden="true")
+   p Una empresa familiar con 16 años de trayectoria dedicada a la atención personalizada y  demás servicios. Son algunas de nuestras características. Contamos con un amplio conocimiento en  administraciones, tasaciones, arrendamientos y ventas de campos y propiedades, brindando SEGURIDAD, CONFIANZA, HONESTIDAD.
+   p Nos capacitamos continuamente en  cursos de perfeccionamiento relacionados con la actividad, CON AMPLIO CONOCIMIENTO  DE LOS CAMPOS Y SUELOS DE LOS  PARTIDOS  DE TANDIL, RAUCH, AYACUCHO, LOBERIA, AZUL,  NECOCHEA  Y  BENITO JUAREZ PARA TASACIONES Y VENTAS DE CAMPOS.
+   p Una inmobiliaria de Tandil, integrada por un equipo de trabajo,  conocedores  de la ciudad y alrededores, lo cual nos ubica en una inmejorable situación, de atender con la mayor precisión las demandas, en consonancia con el perfil de búsqueda de los interesados. Nuestros múltiples servicios están enfocados a satisfacer a nuestra numerosa y diversa clientela.
+  .row
+   h1.titulo Nuestro Local 
+    span.glyphicon.glyphicon-road(aria-hidden="true")
+   div.row.rowstyle
+    div.col-lg-4
+     ul.lista-contacto
+      li
+       p <b>Ciudad:</b> Tandil
+      li
+       p <b>Direccion:</b> Av.Falucho 897
+      li
+       p <b>Telefono:</b> (0249)-4436672
+      li
+       p <b>Cel:</b> (0249)154-633127
+      li
+       p <b>E-mail:</b> hermangatti@hotmail.com
+    div.col-lg-8.mapa
+     iframe(src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1887.5387730175205!2d-59.11036893336255!3d-37.32378430931192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95911fe0c4d5efa1%3A0x850852c2ec0147c2!2sHerman+Gatti+Negocios+Inmobiliarios!5e0!3m2!1ses!2sar!4v1480363523439" width="600" height="450" frameborder="0" style="border:0" allowfullscreen)
+  .row.margin-top
+   h1.titulo Consultas
+    span.glyphicon.glyphicon-envelope
+   form.form-horizontal(action="/mailto" method="post" enctype="application/x-www-form-urlencoded")
+    .form-group
+     label.control-label.col-sm-2(for="email") E-Mail:
+     .col-sm-5
+      input.form-control(type="email" id="mail" placeholder="E-Mail" name="email")
+    .form-group
+     label.control-label.col-sm-2(for="comment") Consulta:
+     .col-sm-8
+      textarea.form-control(type="text" id="comment" placeholder="Su consulta no molesta." name="comment" rows="7")
+    .texto-centrado
+      input(type="submit" value="Enviar")
+      input(type="reset" value="Limpiar")
+   
+ 
