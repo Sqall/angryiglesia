@@ -21,7 +21,10 @@ var db = mongoose.connection;
 //DEFINED ROUTES
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var propiedades = require('./routes/propiedades');
+var comidas = require('./routes/comidas');
+var ropas = require('./routes/ropas');
+var items = require('./routes/items');
+var heroes = require('./routes/heroes');
 var admin = require('./routes/admin');
 
 var app = express();
@@ -83,7 +86,10 @@ app.get('*',function(req,res,next){
 // ROUTES
 app.use('/', routes);
 app.use('/users', users);
-app.use('/propiedades', propiedades);
+app.use('/comidas', comidas);
+app.use('/ropas', ropas);
+app.use('/heroes', heroes);
+app.use('/items', items);
 app.use('/admin',admin);
 
 

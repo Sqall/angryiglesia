@@ -1,30 +1,29 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
-var ItemSchema = mongoose.Schema({
-	id:{
-		type: Number,
+mongoose.connect('mongodb://angrydante:angrydan@ds125048.mlab.com:25048/angryiglesia');
+
+var RopaSchema = mongoose.Schema({
+	categoria:{
+		type:String,
 		index:true
 	},
-	name:{
-		type: String,
+	talle:{
+		type:String,
 	},
-	size:{
-		type: String
+	direccion:{
+		type:String
 	},
-	quantity:{
-		type: String
-	},
-	maxStock:{
-		type: Number
+	descripcion:{
+		type:String
 	}
 });
 
 
-var Item = module.exports = mongoose.model('Hero',ItemSchema);
+var Ropa = module.exports = mongoose.model('Ropa',RopaSchema);
 
-module.exports.getItems = function(callback){
-	Item.find({},function(err,items){
+module.exports.getHome = function(callback){
+	Ropa.find({},function(err,items){
 		if(err){
 			return callback(err);
 		}
@@ -32,30 +31,37 @@ module.exports.getItems = function(callback){
 	});
 };
 
-module.exports.getItembyId = function(id,callback){
-	Item.find({'_id':id},function(err,item){
+module.exports.getRopas = function(callback){
+	Ropa.find({},function(err,items){
 		if(err){
 			return callback(err);
 		}
-		return callback(null,item);
+		return callback(null,items);
 	});
 };
 
-module.exports.newItem = function(id,name,size,quan,stock){
+module.exports.getRopabyId = function(id,callback){
+	Ropa.find({'_id':id},function(err,ropa){
+		if(err){
+			return callback(err);
+		}
+		return callback(null,ropa);
+	});
+};
 
-	var query = new Item({
-		id:id,
-		name:name,
-		size:size,
-		quantity:quan,
-		maxStock:stock
+module.exports.newRopa = function(cat,address,descrip,callback){
+
+	var query = new Ropa({
+		categoria:cat,
+		direccion:address,
+		descripcion:descrip
 	});
 	
 	query.save(function(err){
 		if(err){
 			return callback(err);
 		}
-		return callback(null,'Item saved');
+		return callback(null,'Item guardado correctamente');
 	});
 };
 

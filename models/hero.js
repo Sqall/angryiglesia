@@ -1,30 +1,28 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
-var ItemSchema = mongoose.Schema({
+mongoose.connect('mongodb://angrydante:angrydan@ds125048.mlab.com:25048/angryiglesia');
+
+var HeroSchema = mongoose.Schema({
 	id:{
-		type: Number,
+		type:Number,
 		index:true
 	},
 	name:{
-		type: String,
+		type:String,
 	},
-	size:{
-		type: String
+	location:{
+		type:String
 	},
-	quantity:{
-		type: String
-	},
-	maxStock:{
-		type: Number
-	}
+	needs:[{
+	    type: String
+	}]
 });
 
+var Hero = module.exports = mongoose.model('Hero',HeroSchema);
 
-var Item = module.exports = mongoose.model('Hero',ItemSchema);
-
-module.exports.getItems = function(callback){
-	Item.find({},function(err,items){
+module.exports.getHeroes = function(callback){
+	Hero.find({},function(err,items){
 		if(err){
 			return callback(err);
 		}
@@ -32,8 +30,8 @@ module.exports.getItems = function(callback){
 	});
 };
 
-module.exports.getItembyId = function(id,callback){
-	Item.find({'_id':id},function(err,item){
+module.exports.getHerobyId = function(id,callback){
+	Hero.find({'_id':id},function(err,item){
 		if(err){
 			return callback(err);
 		}
@@ -41,21 +39,19 @@ module.exports.getItembyId = function(id,callback){
 	});
 };
 
-module.exports.newItem = function(id,name,size,quan,stock){
+module.exports.newHero = function(id,name,location,need){
 
-	var query = new Item({
+	var query = new Hero({
 		id:id,
 		name:name,
-		size:size,
-		quantity:quan,
-		maxStock:stock
+		needs:need
 	});
 	
 	query.save(function(err){
 		if(err){
 			return callback(err);
 		}
-		return callback(null,'Item saved');
+		return callback(null,'Hero saved');
 	});
 };
 

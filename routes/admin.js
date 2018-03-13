@@ -11,7 +11,7 @@ var Grid = require('gridfs-stream');
 var GridFS = Grid(mongoose.connection.db, mongoose.mongo);
 
 
-var Propiedades = require('../models/item');
+var Ropas = require('../models/ropa');
 
 
 

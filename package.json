@@ -16,7 +16,6 @@
     "express-session": "^1.14.1",
     "express-validator": "*",
     "gridfs-stream": "^1.1.1",
-    "jade": "~1.11.0",
     "moment": "*",
     "mongodb": "*",
     "mongoose": "*",
