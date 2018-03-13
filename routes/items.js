@@ -25,11 +25,15 @@ router.get('/getItem/:id',function(req,res,next){
   });
 });
 
-function ensureAuthenticated(req,res,next){
-	if(req.isAuthenticated()){
-		return next();
-	}
-	res.redirect('/');
+router.post('/addItem/:id/:size/:quant/:maxst')
+  Items.newItem(req.params.id,req.params.size,req.params.quant,req.params.maxst,function(err,item){
+    if (!err){
+      res.send(item);
+    }
+    else{
+      res.send(err);
+    }
+  });
 };
 
 module.exports = router;
