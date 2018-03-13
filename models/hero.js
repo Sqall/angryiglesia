@@ -1,8 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
-mongoose.connect('mongodb://angrydante:angrydan@ds125048.mlab.com:25048/angryiglesia');
-
 var HeroSchema = mongoose.Schema({
 	id:{
 		type:Number,

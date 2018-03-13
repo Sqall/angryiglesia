@@ -21,7 +21,7 @@ var ItemSchema = mongoose.Schema({
 });
 
 
-var Item = module.exports = mongoose.model('Hero',ItemSchema);
+var Item = module.exports = mongoose.model('Item',ItemSchema);
 
 module.exports.getItems = function(callback){
 	Item.find({},function(err,items){
