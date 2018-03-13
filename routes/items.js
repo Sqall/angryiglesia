@@ -25,8 +25,8 @@ router.get('/getItem/:id',function(req,res,next){
   });
 });
 
-router.post('/addItem/:id/:size/:quant/:maxst')
-  Items.newItem(req.params.id,req.params.size,req.params.quant,req.params.maxst,function(err,item){
+router.post('/addItem/:id/:name/:size/:quant/:maxst')
+  Items.newItem(req.params.id,req.parms.name,req.params.size,req.params.quant,req.params.maxst,function(err,item){
     if (!err){
       res.send(item);
     }
