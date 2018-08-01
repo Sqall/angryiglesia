@@ -18,25 +18,17 @@ var HeroSchema = mongoose.Schema({
 var Hero = module.exports = mongoose.model('Hero',HeroSchema);
 
 module.exports.getHeroes = function(callback){
-	Hero.find({}).toArray(function(err,items){
+	Hero.find({}).function(err,items){
 		if(err){
 			//return callback(err);
 			handleError(res, err.message, "Failed to get Heroes");
 		}else{
 			//return callback(null,items);
-			res.status(200).json(items);
-		}
-		
-	});
+			//res.status(200).json(items);
+			res.status(200).json('SUCESS');
+		}		
+	};
 };
-
-db.collection(CONTACTS_COLLECTION).find({}).toArray(function(err, docs) {
-    if (err) {
-      handleError(res, err.message, "Failed to get contacts.");
-    } else {
-      res.status(200).json(docs);
-    }
-  });
 
 module.exports.getHerobyId = function(id,callback){
 	Hero.find({'_id':id},function(err,item){
