@@ -20,13 +20,10 @@ var Hero = module.exports = mongoose.model('Hero',HeroSchema);
 module.exports.getHeroes = function(callback){
 	Hero.find({},function(err,items){
 		if(err){
-			//return callback(err);
-			handleError(res, err.message, "Failed to get Heroes");
+			return callback(err);			
 		}else{
-			//return callback(null,items);
-			//res.status(200).json(items);
-			res.status(200).json('SUCESS');
-		}		
+			return callback(null,items);
+		}
 	});
 };
 
