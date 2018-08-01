@@ -4,18 +4,27 @@ var bcrypt = require('bcryptjs');
 mongoose.connect('mongodb://angrydante:angrydan@ds125048.mlab.com:25048/angryiglesia');
 
 var RopaSchema = mongoose.Schema({
-	categoria:{
+	nombre:{
 		type:String,
-		index:true
 	},
 	talle:{
 		type:String,
+		index:true
 	},
-	direccion:{
-		type:String
+	cantidad:{
+		type:Number,
 	},
-	descripcion:{
-		type:String
+	stockmax:{
+		type:Number,
+	},
+	stockmin:{
+		type:Number,
+	},
+	stocksec:{
+		type:Number,
+	},
+	parallevar:{
+		type:Number,
 	}
 });
 
@@ -49,89 +58,36 @@ module.exports.getRopabyId = function(id,callback){
 	});
 };
 
-module.exports.newRopa = function(cat,address,descrip,callback){
+module.exports.newRopa = function(name,tall,cant,smax,smin,ssec,pllevar,callback){
 
 	var query = new Ropa({
-		categoria:cat,
-		direccion:address,
-		descripcion:descrip
+		nombre:name,
+		talle:tall,
+		cantidad:cant,
+		stockmax:smax,
+		stockmin:smin,
+		stocksec:ssec,
+		parallevar:pllevar
 	});
 	
 	query.save(function(err){
 		if(err){
 			return callback(err);
 		}
-		return callback(null,'Item guardado correctamente');
+		return callback(null,'Ropa guardada correctamente');
+	});
+};
+
+module.exports.deleteRopa = function(id,callback){
+	Ropa.findOneAndRemove({'_id':id},function(err){
+		return callback("Ropa borrada con exito");
+	});
+};
+
+module.exports.editRopa = function(id,name,smax,smin,ssec,callback){
+	Ropa.findOneAndUpdate({'_id':id},{nombre: name, stockmax: smax, stockmin:smin, stocksec:ssec},function(err){
+		return callback("Ropa modificada con exito");
 	});
 };
 
 
-
-/*
-//Subcategorias difieren en todos
-module.exports.getPropiedadesbyCategoria = function(subcategoria,callback){
-	Propiedad.find({'subcategoria':subcategoria},function(err,propiedadades){
-		if(err){
-			return callback(err);
-		}
-		return callback(null,propiedadades);
-	});
-};
-
-module.exports.getPropiedadbyId = function(id,callback){
-	Propiedad.find({'_id':id},function(err,propiedad){
-		if(err){
-			return callback(err);
-		}
-		return callback(null,propiedad[0]);
-	});
-};
-
-
-module.exports.deletePropiedad = function(id,callback){
-	Propiedad.findOneAndRemove({'_id':id},function(err){
-		if(err){
-			return callback(err);
-		}
-		return callback(null,'sucess');
-	});
-};
-
-module.exports.deleteImage = function(id,imageid,callback){
-	Propiedad.findOneAndUpdate({'_id':id},{$pull: {imagenes: imageid}},function(err){
-		if(err){
-			return callback(err);
-		}
-		else{
-			return callback(null,'sucess');
-		}
-	});
-};
-
-module.exports.addImage = function(id,imageid,callback){
-	Propiedad.update({'_id':id},{$push:{imagenes:imageid}},function(err){
-		if(err){
-			return callback(err);
-		}
-		else{
-			return callback(null,'sucess');
-		}
-	});
-};
-
-module.exports.updatePropiedad = function(id,address,cat,subcat,price,descrip,callback){
-	Propiedad.findOne({'_id':id},function(err,doc){
-		if(err){
-			return callback(err);
-		}
-		else{
-			doc.direccion = address;
-			doc.precio = price;
-			doc.categoria = cat;
-			doc.subcategoria = subcat;
-			doc.descripcion = descrip;
-			doc.save();
-			return callback(null,'success');
-		}
-	});
-};*/

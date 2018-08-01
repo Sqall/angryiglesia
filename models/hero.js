@@ -12,9 +12,7 @@ var HeroSchema = mongoose.Schema({
 	location:{
 		type:String
 	},
-	needs:[{
-	    type: String
-	}]
+	needs:[String]
 });
 
 var Hero = module.exports = mongoose.model('Hero',HeroSchema);
@@ -37,6 +35,17 @@ module.exports.getHerobyId = function(id,callback){
 	});
 };
 
+module.exports.updateHero = function(id,callback){
+	Propiedad.update({'_id':id},function(err){
+		if(err){
+			return callback(err);
+		}
+		else{
+			return callback(null,'sucess');
+		}
+	});
+}
+
 module.exports.newHero = function(id,name,location,need){
 
 	var query = new Hero({
@@ -49,7 +58,16 @@ module.exports.newHero = function(id,name,location,need){
 		if(err){
 			return callback(err);
 		}
-		return callback(null,'Hero saved');
+		return callback(null,'Hero added');
+	});
+};
+
+module.exports.deleteHero = function(id,callback){
+	Hero.findOneAndRemove({'_id':id},function(err){
+		if(err){
+			return callback(err);
+		}
+		return callback(null,'Sucess on Remove');
 	});
 };
 

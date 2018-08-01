@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
-var ComidaSchema = mongoose.Schema({
+var PersonaSchema = mongoose.Schema({
 	Nombre:{
 		type:String,
 		index:true
@@ -15,10 +15,10 @@ var ComidaSchema = mongoose.Schema({
 });
 
 
-var Comida = module.exports = mongoose.model('Comida',ComidaSchema);
+var Persona = module.exports = mongoose.model('Persona',PersonaSchema);
 
 module.exports.getComidas = function(callback){
-	Comida.find({},function(err,items){
+	Persona.find({},function(err,items){
 		if(err){
 			return callback(err);
 		}
@@ -27,7 +27,7 @@ module.exports.getComidas = function(callback){
 };
 
 module.exports.getComidabyId = function(id,callback){
-	Comida.find({'_id':id},function(err,ropa){
+	Persona.find({'_id':id},function(err,ropa){
 		if(err){
 			return callback(err);
 		}
